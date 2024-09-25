@@ -1,22 +1,24 @@
 package com.example.myapplication.backend
 
 import org.junit.Assert.*
-import org.junit.Before
 
 import org.junit.Test
+import java.util.UUID
 
 class IngredientSourceTest {
-    private var testCollections = IngredientSourceCollections(mutableMapOf<Int, IngredientSource>())
-
-    private var testIngredient = IngredientSource(id = 123,
+    private var testCollections = IngredientSourceCollections(mutableMapOf<UUID, IngredientSource>())
+    private var uuidCompare = UUID.randomUUID()
+    private var testIngredient = IngredientSource(
+        id = uuidCompare,
         brand = "testBrand",
         energy = 1000,
         energyType = "cal",
         lastCost = 9.27,
-        name = "testFood")
+        name = "testFood",
+        allCosts = mutableMapOf<String,Double>())
     @Test
     fun getId() {
-        assertEquals(testIngredient.id, 123)
+        assertEquals(testIngredient.id, uuidCompare)
     }
 
     @Test
@@ -85,7 +87,7 @@ class IngredientSourceTest {
     @Test
     fun getValue() {
         testCollections.add(testIngredient)
-        val compareSource = testCollections.getIngredient(123)
+        val compareSource = testCollections.getIngredient(uuidCompare)
         assertEquals(compareSource,testIngredient)
     }
 
@@ -93,15 +95,6 @@ class IngredientSourceTest {
     fun remove() {
         testCollections.remove(testIngredient.id)
         AssertionError(testCollections.getIngredient(testIngredient.id))
-    }
-
-
-}
-class IngredientTest {
-
-    @Before
-    fun setUp() {
-
     }
 
 
