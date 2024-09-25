@@ -1,15 +1,12 @@
 package com.example.myapplication.backend
 
-import android.util.Size
 import org.junit.Assert.*
 import org.junit.Before
 
 import org.junit.Test
-import kotlin.collections.ArrayList
 
 class IngredientSourceTest {
-
-    private var testCollections = IngredientSourceCollections(ArrayList<IngredientSource>())
+    private var testCollections = IngredientSourceCollections(mutableMapOf<Int, IngredientSource>())
 
     private var testIngredient = IngredientSource(id = 123,
         brand = "testBrand",
