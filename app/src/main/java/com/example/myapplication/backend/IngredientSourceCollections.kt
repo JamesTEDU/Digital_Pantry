@@ -1,6 +1,8 @@
 package com.example.myapplication.backend
 
-class IngredientSourceCollections(private var ingredients: MutableMap<Int, IngredientSource>){
+import java.util.UUID
+
+class IngredientSourceCollections(private var ingredients: MutableMap<UUID, IngredientSource>){
 
     // This is a terrible way to do this. Ingredients should give an id to the item
     fun add(ingredient: IngredientSource) {
@@ -8,11 +10,11 @@ class IngredientSourceCollections(private var ingredients: MutableMap<Int, Ingre
     }
 
 
-    fun getIngredient(id: Int): IngredientSource? {
+    fun getIngredient(id: UUID): IngredientSource? {
         return ingredients[id]
     }
 
-    fun remove(id: Int) {
+    fun remove(id: UUID) {
         this.ingredients.remove(id)
     }
 
