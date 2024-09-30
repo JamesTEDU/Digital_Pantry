@@ -1,5 +1,6 @@
 package com.example.myapplication.backend
 
+
 import org.junit.Assert.*
 
 import org.junit.Test
@@ -98,4 +99,79 @@ class IngredientSourceTest {
     }
 
 
+}
+class IngredientSourceCollectionsTest{
+    private var uuidCompare = UUID.randomUUID()
+    private var testIngredient = IngredientSource(
+        id = uuidCompare,
+        brand = "testBrand",
+        energy = 1000,
+        energyType = "cal",
+        lastCost = 9.27,
+        name = "testFood",
+        allCosts = mutableMapOf<String,Double>())
+    private val sourceCollections = IngredientSourceCollections(mutableMapOf<UUID,IngredientSource>())
+
+    @Test
+    fun add() {
+        sourceCollections.add(testIngredient)
+    }
+
+    @Test
+    fun getIngredient() {
+        sourceCollections.add(testIngredient)
+        assertEquals( sourceCollections.getIngredient(uuidCompare),testIngredient)
+
+    }
+
+    @Test
+    fun remove() {
+        sourceCollections.add(testIngredient)
+        sourceCollections.remove(uuidCompare)
+        AssertionError(sourceCollections.getIngredient(uuidCompare))
+
+    }
+
+    @Test
+    fun size() {
+        sourceCollections.add(testIngredient)
+        assertEquals(sourceCollections.size(),1)
+    }
+
+}
+class IngredientTest {
+    private var uuidCompare = UUID.randomUUID()
+    private var testIngredient = IngredientSource(
+        id = uuidCompare,
+        brand = "testBrand",
+        energy = 1000,
+        energyType = "cal",
+        lastCost = 9.27,
+        name = "testFood",
+        allCosts = mutableMapOf<String,Double>())
+
+    @Test
+    fun createNew() {
+        val createTest = Ingredient(sourceIngredient = uuidCompare)
+    }
+
+    @Test
+    fun getSourceIngredient() {
+    }
+
+    @Test
+    fun getExpiryDate() {
+    }
+
+    @Test
+    fun setExpiryDate() {
+    }
+
+    @Test
+    fun getRemaining() {
+    }
+
+    @Test
+    fun setRemaining() {
+    }
 }
